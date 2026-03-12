@@ -1,0 +1,9 @@
+# Fill with exact pinned dependencies before publication
+numpy
+pandas
+matplotlib
+opencv-python
+scipy
+scikit-image
+scikit-learn
+pycocotools

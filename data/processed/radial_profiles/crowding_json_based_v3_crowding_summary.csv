@@ -1,0 +1,3 @@
+sample,n_json_files,n_entries_total,n_entries_after_category_filter,n_crystal_masks_used,n_rows_veff,n_rows_with_geometry_match,geometry_match_fraction,n_rows,n_veff_valid,n_nn_valid,nn_distance_px_mean,nn_distance_px_median,impingement_index_mean,impingement_index_median
+FAPI,1544,426451,180545,180545,180545,126899,0.7028663214157135,180545,180545,126899,87.64563570559199,82.97607220377212,0.5714052864315879,0.5665674033769306
+FAPI-TEMPO,1544,527202,241619,241619,241619,174227,0.7210815374618718,241619,241619,174227,73.46271462808157,68.50367209209799,0.5365202618398848,0.5218744564051904

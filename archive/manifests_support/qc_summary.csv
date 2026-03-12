@@ -1,0 +1,5 @@
+dataset,key,value
+FAPI,um_per_px,0.065
+FAPI,note_01,active_missing_frame_kinetics
+FAPI,note_02,growth_missing_growth_rate_vs_time
+FAPI,note_03,tau_missing_tau_fits

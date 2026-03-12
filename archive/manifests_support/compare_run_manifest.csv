@@ -1,0 +1,19 @@
+dataset,category,path,exists
+FAPI,rate_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\canonical_inputs\FAPI\rate_curve.csv,True
+FAPI,Nt_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\canonical_inputs\FAPI\Nt_curve.csv,True
+FAPI,events_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\canonical_inputs\FAPI\events.csv,True
+FAPI,active_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI\active_table_harmonized.csv,True
+FAPI,growth_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI\growth_table_harmonized.csv,True
+FAPI,tau_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI\tau_table_harmonized.csv,True
+FAPI,tau_flag,,False
+FAPI,qc_summary_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI\qc_summary.csv,True
+FAPI,tau_disabled_by_flag,,False
+FAPI-TEMPO,rate_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\canonical_inputs\FAPI_TEMPO\rate_curve.csv,True
+FAPI-TEMPO,Nt_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\canonical_inputs\FAPI_TEMPO\Nt_curve.csv,True
+FAPI-TEMPO,events_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\canonical_inputs\FAPI_TEMPO\events.csv,True
+FAPI-TEMPO,active_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI_TEMPO\active_table_harmonized.csv,True
+FAPI-TEMPO,growth_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI_TEMPO\growth_table_harmonized.csv,True
+FAPI-TEMPO,tau_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI_TEMPO\tau_table_harmonized.csv,True
+FAPI-TEMPO,tau_flag,,False
+FAPI-TEMPO,qc_summary_csv,F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\harmonized_tables\FAPI_TEMPO\qc_summary.csv,True
+FAPI-TEMPO,tau_disabled_by_flag,,False

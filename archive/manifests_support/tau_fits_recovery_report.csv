@@ -1,0 +1,7 @@
+candidate_path,exists,read_ok,n_rows,n_cols,has_track_id,has_tau,is_true_tau_source,chosen,note
+F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\out\FAPI_TEMPO\idmap_kinetics_win60\track_summary.csv,True,True,130.0,11.0,True,True,True,True,track_col=track_id; tau_col=tau_ms
+F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\out\FAPI_TEMPO\idmap_kinetics_win40\track_summary.csv,True,True,130.0,11.0,True,True,True,False,track_col=track_id; tau_col=tau_ms
+F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\out\FAPI_TEMPO\idmap_kinetics_win80\track_summary.csv,True,True,130.0,11.0,True,True,True,False,track_col=track_id; tau_col=tau_ms
+F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\out\FAPI_TEMPO\track_summary.csv,True,True,977.0,7.0,True,False,False,False,track_col=track_id; tau_col=None
+F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\raw_snapshot\FAPI_TEMPO\idmap_kinetics_win60\track_summary.csv,False,False,,,False,False,False,False,missing
+F:\Sandy_data\AI segemetation work\Sts_grain morphology_ML\Kinetics\harmonization_checkpoints\v001_video_pair_fapi_vs_fapi_tempo\raw_snapshot\FAPI_TEMPO\out_FAPI_TEMPO_track_summary\track_summary.csv,True,True,977.0,7.0,True,False,False,False,track_col=track_id; tau_col=None

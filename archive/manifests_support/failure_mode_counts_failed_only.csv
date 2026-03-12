@@ -1,0 +1,4 @@
+primary_failure_mode,count
+fit_status:too_few_points,526
+unspecified,360
+fit_status:insufficient_growth_dynamic,72

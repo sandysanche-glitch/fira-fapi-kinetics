@@ -1,0 +1,7 @@
+sample,descriptor,descriptor_col,n,spearman_rho,spearman_p,spearman_p_str,pearson_r,pearson_p,pearson_p_str
+FAPI,Circularity distortion,circularity_distortion,180545,0.26473985954863544,0.0,<1e-300,0.20013461803721921,0.0,<1e-300
+FAPI-TEMPO,Circularity distortion,circularity_distortion,241619,0.28548002232574793,0.0,<1e-300,0.2032297134131834,0.0,<1e-300
+FAPI,Defect fraction,defect_fraction,180545,0.247922322385307,0.0,<1e-300,0.006680298760904716,0.004532467273917982,0.0045
+FAPI-TEMPO,Defect fraction,defect_fraction,241619,0.18944384969591269,0.0,<1e-300,0.008930100632065526,1.1354162255962726e-05,1.14e-05
+FAPI,Entropy,entropy_hm_(bits),180545,0.2631137436612824,0.0,<1e-300,0.2093419267674257,0.0,<1e-300
+FAPI-TEMPO,Entropy,entropy_hm_(bits),241619,0.4138454843525595,0.0,<1e-300,0.3153912355814432,0.0,<1e-300

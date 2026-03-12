@@ -1,0 +1,2 @@
+n_tracks_total,n_fit_ok,n_fit_failed,tau_ms_count,tau_ms_min,tau_ms_median,tau_ms_mean,tau_ms_max,rmse_px_count,rmse_px_min,rmse_px_median,rmse_px_mean,rmse_px_max,n_points_count,n_points_min,n_points_median,n_points_mean,n_points_max,duration_ms_count,duration_ms_min,duration_ms_median,duration_ms_mean,duration_ms_max
+977,392,585,392,0.2,27.48929375278771,564.4420764716916,3460.0,392,0.10527102911710234,1.6785442912961976,4.672638822829258,43.73397815569061,392,5.0,66.5,67.34948979591837,184.0,392,8.0,134.0,134.0204081632653,366.0

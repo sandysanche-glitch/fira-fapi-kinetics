@@ -1,0 +1,16 @@
+name: samcuda
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy
+  - scikit-image
+  - scikit-learn
+  - opencv
+  - pip
+  - pip:
+      - pycocotools

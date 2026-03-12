@@ -1,0 +1,3 @@
+sample,n_json_files,n_annotations_seen,n_annotations_after_category_filter,n_grains_matched_to_veff,n_grains_used_after_ring_filter,scalar_mean_veff,scalar_std_veff,scalar_CV_veff
+FAPI,1544,426451,180545,180545,180545,0.036021405097566475,0.016523888064817808,0.45872413971808457
+FAPI-TEMPO,1544,527202,241619,241619,241619,0.02936594844533858,0.013125430723961226,0.4469608992330945

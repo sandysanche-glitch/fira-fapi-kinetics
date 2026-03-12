@@ -1,0 +1,3 @@
+sample,n_rows,n_veff_valid,n_nn_valid,nn_distance_px_mean,nn_distance_px_median,impingement_index_mean,impingement_index_median
+FAPI,180545,180545,0,,,,
+FAPI-TEMPO,241619,241619,0,,,,

@@ -1,0 +1,3 @@
+priority,topic,recommendation,evidence
+1,QC strictness vs fit formulation,All tracks fail QC despite some fit_status=ok. Inspect representative fits by mode before loosening thresholds. Prioritize diagnosing tau-bound hits and fit-window adequacy.,"fit_ok=360, qc_pass=0, total=958"
+2,Low R² prevalence,"R² appears low overall. Inspect whether growth model matches actual kinetics (single-exponential rise may be too simple), and verify radius extraction smoothness/noise. Consider weighting, smoothing, or monotonic filtering for fit input.",median R²=0.879

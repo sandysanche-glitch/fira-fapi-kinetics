@@ -1,0 +1,11 @@
+kind,src_rel,dst_rel,status,note
+dir,compare_outputs,compare_outputs,copied,"files_copied=30, files_skipped=0"
+dir,tau_recovery_debug,tau_recovery_debug,copied,"files_copied=46, files_skipped=0"
+dir,canonical_inputs,canonical_inputs,copied,"files_copied=21, files_skipped=0"
+dir,harmonized_tables,harmonized_tables,copied,"files_copied=9, files_skipped=0"
+dir,manifests,manifests,copied,"files_copied=8, files_skipped=0"
+dir,scripts,scripts,copied,"files_copied=8, files_skipped=0"
+file,README_scope.md,README_scope.md,copied,
+file,decisions_log.md,decisions_log.md,copied,
+file,compare_outputs\csv\tempo_tau_recovery_summary.csv,compare_outputs\csv\tempo_tau_recovery_summary.csv,copied,extra_tau_candidate
+file,compare_outputs\csv\tempo_tau_recovery_warnings.csv,compare_outputs\csv\tempo_tau_recovery_warnings.csv,copied,extra_tau_candidate

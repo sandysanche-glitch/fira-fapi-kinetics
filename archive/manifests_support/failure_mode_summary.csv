@@ -1,0 +1,5 @@
+mode,count,frac_all,n_fit_ok,n_qc_pass,n_qc_fail,tau_ms_norm_median,r2_norm_median,fit_window_ms_norm_median,fit_window_over_tau_median,tau_lb_ratio_median,tau_ub_ratio_median,tau_ms_norm_p10,tau_ms_norm_p90,r2_norm_p10,r2_norm_p90,fit_window_ms_norm_p10,fit_window_ms_norm_p90,fit_window_over_tau_p10,fit_window_over_tau_p90,tau_lb_ratio_p10,tau_lb_ratio_p90,tau_ub_ratio_p10,tau_ub_ratio_p90
+__GLOBAL__,958,1.0,360,0,958,15.768426931203944,0.8787636353602272,,,,,,,,,,,,,,,,
+fit_status:too_few_points,526,0.5490605427974948,0,0,526,,,,,,,,,,,,,,,,,,
+unspecified,360,0.3757828810020877,360,0,360,15.768426931203944,0.8787636353602272,,,,,1.283749255427099,504.97857746222655,0.15274157857663817,0.9882344090944227,,,,,,,,
+fit_status:insufficient_growth_dynamic,72,0.07515657620041753,0,0,72,,,,,,,,,,,,,,,,,,

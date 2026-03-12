@@ -1,0 +1,79 @@
+﻿Core Idea
+Use the final area rank of each crystal (spherulite) among all crystals to define a pseudo-time for nucleation within 0–60 ms. The smallest crystal is treated as earliest; the largest as latest. Growth then proceeds from that nucleation time to the end of solidification (0–600 ms).
+1) Inputs per object (one snapshot per spherulite)
+• category_id: 1 = crystal (mask), 2 = nucleus (point), 3 = defect (mask/attribute)
+• Crystal mask (polygon or RLE) → area AiA_iAi​, perimeter PiP_iPi​
+• Nucleation center (xi,yi)(x_i, y_i)(xi​,yi​) (if available)
+• Defect area Adef,iA_{\text{def},i}Adef,i​ (explicit class 3 or derived overlap)
+• Optional: global coordinates for masks (only for estimating an effective observation area if bulk X(t)X(t)X(t) is desired)
+
+2) Derived features (per object)
+• Circularity: Ci=4πAiPi2∈(0,1]C_i = \dfrac{4\pi A_i}{P_i^2} \in (0,1]Ci​=Pi2​4πAi​​∈(0,1]
+• Defect fraction: ϕi=Adef,iAi+ε\phi_i = \dfrac{A_{\text{def},i}}{A_i + \varepsilon}ϕi​=Ai​+εAdef,i​​, with ε≈10−6\varepsilon \approx 10^{-6}ε≈10−6
+
+3) Rank-to-time mapping (pseudo-times)
+Sort crystals by final area AiA_iAi​ ascending. For each crystal iii, define
+qi=rank(Ai)−1N−1∈[0,1].q_i = \frac{\text{rank}(A_i) - 1}{N - 1} \in [0,1].qi​=N−1rank(Ai​)−1​∈[0,1]. 
+Set nucleation time
+t0,i=60 ms×qi.t_{0,i} = 60\ \text{ms} \times q_i.t0,i​=60 ms×qi​. 
+(Smallest crystal →t0≈0 ms\to t_0 \approx 0\ \text{ms}→t0​≈0 ms; largest →t0≈60 ms\to t_0 \approx 60\ \text{ms}→t0​≈60 ms.)
+
+4) Growth (0–600 ms) with morphology penalties
+Let the final radius Ri=Ai/πR_i = \sqrt{A_i/\pi}Ri​=Ai​/π​ and the available growth time Δti=600−t0,i ms\Delta t_i = 600 - t_{0,i}\ \text{ms}Δti​=600−t0,i​ ms.
+Define (time-constant, since we have a single snapshot):
+• fcirc,i=exp⁡[−α(1−Ci)]f_{\text{circ},i} = \exp[-\alpha (1 - C_i)]fcirc,i​=exp[−α(1−Ci​)]
+• fdef,i=exp⁡[−βϕi]f_{\text{def},i} = \exp[-\beta \phi_i]fdef,i​=exp[−βϕi​]
+• Effective speed: vi=v0⋅fcirc,i⋅fdef,iv_i = v_0 \cdot f_{\text{circ},i} \cdot f_{\text{def},i}vi​=v0​⋅fcirc,i​⋅fdef,i​
+Choose the common base speed v0v_0v0​ so that typical crystals reach their observed final radius at t=600 mst=600\ \text{ms}t=600 ms:
+v0=median⁡i{RiΔti⋅fcirc,i⋅fdef,i}.v_0 = \operatorname{median}_i \left\{ \frac{R_i}{\Delta t_i \cdot f_{\text{circ},i} \cdot f_{\text{def},i}} \right\}.v0​=mediani​{Δti​⋅fcirc,i​⋅fdef,i​Ri​​}. 
+Per-object area-vs-time curve (1 ms grid):
+ri(t)=vi max⁡(0,t−t0,i),Apred,i(t)=π ri(t)2,t∈[0,600] ms.r_i(t) = v_i\, \max(0, t - t_{0,i}),\quad A_{\text{pred},i}(t) = \pi\, r_i(t)^2,\quad t \in [0,600]\ \text{ms}.ri​(t)=vi​max(0,t−t0,i​),Apred,i​(t)=πri​(t)2,t∈[0,600] ms. 
+Optional anisotropy (if evident from mask geometry): estimate major axis θ0,i\theta_{0,i}θ0,i​ via ellipse/PCA and modulate
+vi(θ)=v0fcirc,ifdef,i[1+εacos⁡(2(θ−θ0,i))], ∣εa∣<1,v_i(\theta) = v_0 f_{\text{circ},i} f_{\text{def},i} \left[1 + \varepsilon_a \cos(2(\theta-\theta_{0,i}))\right],\ |\varepsilon_a|<1,vi​(θ)=v0​fcirc,i​fdef,i​[1+εa​cos(2(θ−θ0,i​))], ∣εa​∣<1, 
+then approximate area by angular sampling and envelope polygonization.
+
+5) Nucleation-rate density I(t)I(t)I(t) (0–60 ms)
+Using {t0,i}\{t_{0,i}\}{t0,i​} from the rank mapping, fit two candidates by MLE and select via BIC (AIC as tiebreaker):
+• Lognormal: I(t)=1tσ2πexp⁡ ⁣[−(ln⁡t−μ)22σ2]\displaystyle I(t)=\frac{1}{t\sigma\sqrt{2\pi}}\exp\!\left[-\frac{(\ln t-\mu)^2}{2\sigma^2}\right]I(t)=tσ2π​1​exp[−2σ2(lnt−μ)2​]
+• Gamma: I(t)=tk−1e−t/θΓ(k) θk\displaystyle I(t)=\frac{t^{k-1}e^{-t/\theta}}{\Gamma(k)\,\theta^k}I(t)=Γ(k)θktk−1e−t/θ​
+Report the chosen model and parameters, plus a 1 ms-resolution I(t)I(t)I(t) and 95% bootstrap confidence bands from resampling {t0,i}\{t_{0,i}\}{t0,i​}.
+
+6) Bulk fraction X(t)X(t)X(t) (optional)
+If a bulk transformed fraction is desired, estimate an effective observation area AeffA_{\text{eff}}Aeff​ (e.g., convex-hull area of all crystal polygons, or a fixed constant). Then
+Xpred(t)≈1Aeff∑iApred,i(t).X_{\text{pred}}(t) \approx \frac{1}{A_{\text{eff}}}\sum_i A_{\text{pred},i}(t).Xpred​(t)≈Aeff​1​i∑​Apred,i​(t). 
+Overlay an isothermal Avrami curve:
+XAvrami(t)=1−exp⁡[−Ktn],X_{\text{Avrami}}(t) = 1 - \exp[-K t^{n}],XAvrami​(t)=1−exp[−Ktn], 
+with fixed nnn (document choice) and fitted KKK by least squares against Xpred(t)X_{\text{pred}}(t)Xpred​(t).
+
+7) Outputs
+• CSVs: selected I(t)I(t)I(t) with bands; per-object Apred,i(t)A_{\text{pred},i}(t)Apred,i​(t); optional X(t)X(t)X(t) & Avrami overlay; fitted parameters (μ,σ\mu,\sigmaμ,σ or k,θk,\thetak,θ; v0,α,β,(εa),Kv_0,\alpha,\beta,(\varepsilon_a),Kv0​,α,β,(εa​),K); AIC/BIC.
+• Plots: I(t)I(t)I(t) with selected model & bands; per-object growth overlays; optional X(t)X(t)X(t) vs Avrami.
+
+Practical Procedure (Step-by-Step)
+1. Load COCO JSON(s); extract crystals (category_id=1) and defects (category_id=3).
+2. For each crystal: compute Ai,Pi⇒Ci=4πAi/Pi2A_i, P_i \Rightarrow C_i = 4\pi A_i / P_i^2Ai​,Pi​⇒Ci​=4πAi​/Pi2​.
+3. Compute ϕi\phi_iϕi​ using defect masks (or set ϕi=0\phi_i=0ϕi​=0 if absent).
+4. Sort by AiA_iAi​; compute qiq_iqi​ and t0,i=60 ms×qit_{0,i}=60\,\text{ms}\times q_it0,i​=60ms×qi​.
+5. Set penalties fcirc,i,fdef,if_{\text{circ},i}, f_{\text{def},i}fcirc,i​,fdef,i​ (start with α=β=1\alpha=\beta=1α=β=1).
+6. Compute Ri=Ai/πR_i=\sqrt{A_i/\pi}Ri​=Ai​/π​, Δti=600−t0,i\Delta t_i=600-t_{0,i}Δti​=600−t0,i​.
+7. Compute v0=median⁡i{Ri/(Δtifcirc,ifdef,i)}v_0 = \operatorname{median}_i\{ R_i / (\Delta t_i f_{\text{circ},i} f_{\text{def},i})\}v0​=mediani​{Ri​/(Δti​fcirc,i​fdef,i​)}.
+8. Generate Apred,i(t)A_{\text{pred},i}(t)Apred,i​(t) on a 1 ms grid; ensure Apred,i(600ms)A_{\text{pred},i}(600\text{ms})Apred,i​(600ms) ≈ observed AiA_iAi​.
+9. Fit I(t)I(t)I(t) (lognormal vs gamma) on t∈(0,60]t\in(0,60]t∈(0,60] ms; choose via BIC; bootstrap bands.
+10. (Optional) Estimate AeffA_{\text{eff}}Aeff​, compute Xpred(t)X_{\text{pred}}(t)Xpred​(t), fit Avrami KKK with fixed nnn.
+11. Export CSVs and plots.
+
+Defaults, Tuning, Notes
+• Windows: nucleation 0–60 ms; growth 0–600 ms; grid 1 ms.
+• Penalty weights α,β≥0\alpha,\beta \ge 0α,β≥0 (default 1.0 each).
+• If AeffA_{\text{eff}}Aeff​ is uncertain, skip bulk X(t)X(t)X(t) and rely on per-object diagnostics.
+• Rank-to-time mapping is robust for single-snapshot datasets (no frames).
+• Keep an analysis log (versions, seeds, choices of nnn, thresholds, AeffA_{\text{eff}}Aeff​).
+
+Appendix: Key formulas
+• C=4πAP2C = \dfrac{4\pi A}{P^2}C=P24πA​, ϕ=AdefA+ε\quad \phi = \dfrac{A_{\text{def}}}{A+\varepsilon} ϕ=A+εAdef​​
+• r(t)=v0 fcirc fdef max⁡(0,t−t0)r(t) = v_0\, f_{\text{circ}}\, f_{\text{def}}\, \max(0,t-t_0)r(t)=v0​fcirc​fdef​max(0,t−t0​), Apred(t)=πr(t)2\quad A_{\text{pred}}(t)=\pi r(t)^2 Apred​(t)=πr(t)2
+• Xpred(t)≈1Aeff∑iApred,i(t)X_{\text{pred}}(t) \approx \dfrac{1}{A_{\text{eff}}}\sum_i A_{\text{pred},i}(t)Xpred​(t)≈Aeff​1​∑i​Apred,i​(t)
+• XAvrami(t)=1−exp⁡[−Ktn]X_{\text{Avrami}}(t)=1-\exp[-K t^n]XAvrami​(t)=1−exp[−Ktn]
+• Ilognormal(t)=1tσ2πexp⁡ ⁣[−(ln⁡t−μ)22σ2]I_{\text{lognormal}}(t)=\dfrac{1}{t\sigma\sqrt{2\pi}} \exp\!\left[-\dfrac{(\ln t-\mu)^2}{2\sigma^2}\right]Ilognormal​(t)=tσ2π​1​exp[−2σ2(lnt−μ)2​]
+• Igamma(t)=tk−1e−t/θΓ(k)θkI_{\text{gamma}}(t)=\dfrac{t^{k-1}e^{-t/\theta}}{\Gamma(k)\theta^k}Igamma​(t)=Γ(k)θktk−1e−t/θ​
+
